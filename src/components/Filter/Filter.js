@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getFilterWord } from '../../redux/phonebook/phonebook-selectors';
-import { changeFilter } from '../../redux/phonebook/phonebook-actions';
+import { getFilterWord } from '../../redux/contacts/contacts-selectors';
+import { changeFilter } from '../../redux/contacts/contacts-actions';
 import s from './Filter.module.css';
 
 export default function Filter() {

@@ -11,11 +11,13 @@ import ContactsView from './views/ContactsView';
 export default function App() {
   return (
     <>
-      <MainAppBar />
       <Routes>
-        <Route path="/" element={<RegisterView />} />
-        <Route path="/login" element={<LoginView />} />
-        <Route path="/contacts" element={<ContactsView/>}/>
+        <Route path="/" element={<MainAppBar />} >
+          <Route index element={<RegisterView />} />
+          <Route path="register" element={<RegisterView />} />
+          <Route path="login" element={<LoginView />} />
+          <Route path="contacts" element={<ContactsView/>}/>
+        </Route>
       </Routes>
       
 

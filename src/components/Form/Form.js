@@ -5,7 +5,7 @@ import { Oval } from 'react-loader-spinner';
 import {
   useFetchContactsQuery,
   useSaveContactMutation,
-} from '../../redux/phonebook/phonebook-reducer';
+} from '../../redux/contacts/contacts-reducer';
 
 import s from './Form.module.css';
 import Notification from '../Notiification/Notification';

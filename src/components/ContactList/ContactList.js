@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 
-import { useFetchContactsQuery } from '../../redux/phonebook/phonebook-reducer';
-import { getFilterWord } from '../../redux/phonebook/phonebook-selectors';
+import { useFetchContactsQuery } from '../../redux/contacts/contacts-reducer';
+import { getFilterWord } from '../../redux/contacts/contacts-selectors';
 import ContactItem from '../ContactItem';
 import s from './ContactList.module.css';
 
