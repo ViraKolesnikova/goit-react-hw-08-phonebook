@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { useLoginUserMutation } from '../redux/auth/auth-reducer';
 import s from '../components/Form/Form.module.css';
 import Container from '../components/Container';
 
@@ -7,10 +8,18 @@ export default function RegisterView() {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [loginUser, { data }] = useLoginUserMutation();
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    const userData = { email: mail, password };
+    loginUser(userData);    
+  };
+
   return (
     <Container>
       <h1>Log in</h1>
-      <form className={s.form}>
+      <form className={s.form} onSubmit={handleSubmit}>
         <div className={s.inputWrapper}>
           <label className={s.label} htmlFor="mail">
             E-mail

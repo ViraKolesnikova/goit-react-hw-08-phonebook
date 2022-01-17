@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { authApi } from './auth-reducer';
 
-
 const initialState = {
   user: { name: null, email: null },
   token: null,
@@ -11,28 +10,35 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder.addMatcher(
-        authApi.endpoints.registerUser.matchFulfilled,
-        (state, { payload}) => {
-            state.user = payload.user;
-      state.token = payload.token;
-      state.isLoggedIn = true;
-        }
-      );
+      authApi.endpoints.registerUser.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
+        state.isLoggedIn = true;
+      },
+    );
+
+    builder.addMatcher(
+      authApi.endpoints.loginUser.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
+        state.isLoggedIn = true;
+      },
+    );
+
+    builder.addMatcher(
+      authApi.endpoints.logoutUser.matchFulfilled,
+      (state, { payload }) => {
+        state.user = initialState.user;
+        state.token = initialState.token;
+        state.isLoggedIn = false;
+      },
+    );
   },
-  
-  // {
-  //   [authOperations.register.fulfilled](state, action) {
-  //     state.user = action.payload.user;
-  //     state.token = action.payload.token;
-  //     state.isLoggedIn = true;
-  //   },
-  //   [authOperations.logIn.fulfilled](state, action) {
-  //     state.user = action.payload.user;
-  //     state.token = action.payload.token;
-  //     state.isLoggedIn = true;
-  //   },
+
   //   [authOperations.logOut.fulfilled](state, action) {
   //     state.user = { name: null, email: null };
   //     state.token = null;

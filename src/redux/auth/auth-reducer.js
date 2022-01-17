@@ -15,11 +15,28 @@ export const authApi = createApi({
       }),
       invalidatesTags: ['Auth'],
     }),
+    loginUser: builder.mutation({
+      query: userData => ({
+        url: '/users/login',
+        method: 'POST',
+        body: userData,
+      }),
+      invalidatesTags: ['Auth'],
+    }),
+    logoutUser: builder.mutation({
+      query: () => ({
+        url: '/users/logout',
+        method: 'POST',        
+      }),
+      invalidatesTags: ['Auth'],
+    }),
 
     
   }),
 });
 
 export const {
-  useRegisterUserMutation,  
+  useRegisterUserMutation,
+  useLoginUserMutation,
+  useLogoutUserMutation,
 } = authApi;

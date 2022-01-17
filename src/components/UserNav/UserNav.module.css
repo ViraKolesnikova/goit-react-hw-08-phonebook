@@ -1,0 +1,20 @@
+.userMail {
+  margin-right: 18px;
+  color: rgb(197 205 208 / 60%);
+}
+
+.logOutBtn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: transparent;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 300ms ease-out;
+}
+
+.logOutBtn:hover,
+.logOutBtn:focus {
+  background-color: rgb(42, 95, 209);
+}
