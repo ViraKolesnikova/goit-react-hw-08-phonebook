@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { Oval } from 'react-loader-spinner';
 
-import { useDeleteContactsMutation } from '../../redux/contacts/contacts-reducer';
+import { useDeleteContactMutation } from '../../redux/contacts/contacts-reducer';
 import s from './ContactItem.module.css';
 
 export default function ContactItem({ id, name, phoneNumber }) {
-  const [deleteContact, { isLoading }] = useDeleteContactsMutation();
+  const [deleteContact, { isLoading }] = useDeleteContactMutation();
 
   return (
     <>

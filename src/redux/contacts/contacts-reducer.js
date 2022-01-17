@@ -10,7 +10,15 @@ export const filterReducer = createReducer('', {
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://61daf7c14593510017aff746.mockapi.io/api',
+    baseUrl: 'https://connections-api.herokuapp.com/',
+    prepareHeaders: (headers, { getState }) => {
+    const token = getState().auth.token
+
+    if (token) {
+      headers.set('authorization', `Bearer ${token}`)
+    }
+    return headers
+  },
   }),
   tagTypes: ['Contacts'],
   endpoints: builder => ({
@@ -28,10 +36,18 @@ export const contactsApi = createApi({
       invalidatesTags: ['Contacts'],
     }),
 
-    deleteContacts: builder.mutation({
+    deleteContact: builder.mutation({
       query: id => ({
         url: `/contacts/${id}`,
         method: 'DELETE',
+      }),
+      invalidatesTags: ['Contacts'],
+    }),
+
+    editContact: builder.mutation({
+      query: id => ({
+        url: `/contacts/${id}`,
+        method: 'PATCH',
       }),
       invalidatesTags: ['Contacts'],
     }),
@@ -41,5 +57,5 @@ export const contactsApi = createApi({
 export const {
   useFetchContactsQuery,
   useSaveContactMutation,
-  useDeleteContactsMutation,
+  useDeleteContactMutation,
 } = contactsApi;

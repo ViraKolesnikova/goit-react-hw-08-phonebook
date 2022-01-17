@@ -37,18 +37,15 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
       },
     );
-  },
 
-  //   [authOperations.logOut.fulfilled](state, action) {
-  //     state.user = { name: null, email: null };
-  //     state.token = null;
-  //     state.isLoggedIn = false;
-  //   },
-  //   [authOperations.fetchCurrentUser.fulfilled](state, action) {
-  //     state.user = action.payload;
-  //     state.isLoggedIn = true;
-  //   },
-  // },
+    builder.addMatcher(
+      authApi.endpoints.fetchCurrentUser.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload;
+        state.isLoggedIn = true;
+      },
+    );
+  },  
 });
 
-// export default authSlice;
+

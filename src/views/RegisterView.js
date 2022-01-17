@@ -15,8 +15,15 @@ export default function RegisterView() {
   const handleSubmit = event => {
     event.preventDefault();
     const newUser = { name, email: mail, password };
-    registerUser(newUser);    
+    registerUser(newUser);
+    reset();    
   };
+
+  const reset = () => {
+    setName('');
+    setMail ('');
+    setPassword ('');
+  }
 
   return (
     <Container>
