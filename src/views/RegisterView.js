@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useRegisterUserMutation } from '../redux/auth/auth-reducer';
 import s from '../components/Form/Form.module.css';
@@ -10,12 +10,14 @@ export default function RegisterView() {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [registerUser, { data, error }] = useRegisterUserMutation();
+  const [registerUser, { isSuccess }] = useRegisterUserMutation();
+  const navigate = useNavigate();
 
   const handleSubmit = event => {
     event.preventDefault();
     const newUser = { name, email: mail, password };
     registerUser(newUser);
+    
     reset();    
   };
 
@@ -26,6 +28,7 @@ export default function RegisterView() {
   }
 
   return (
+    <>
     <Container>
       <h1>Register form</h1>
       <form className={s.form} onSubmit={handleSubmit}>
@@ -84,5 +87,8 @@ export default function RegisterView() {
         </p>
       </form>
     </Container>
+
+    { isSuccess && navigate('/contacts') }
+  </>
   );
 }

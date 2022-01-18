@@ -22,8 +22,8 @@ export default function ContactList() {
       {error && toast.error(`Ooops...Not Found`)}
       <ul className={s.contactList}>
         {data &&
-          filteredContacts.map(({ id, name, phone }) => (
-            <ContactItem key={id} id={id} name={name} phoneNumber={phone} />
+          filteredContacts.map(({ id, name, number }) => (
+            <ContactItem key={id} id={id} name={name} phoneNumber={number} />
           ))}
       </ul>
     </>

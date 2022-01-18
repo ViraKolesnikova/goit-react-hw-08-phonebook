@@ -23,7 +23,7 @@ export default function Form() {
     event.preventDefault();
     const newContact = {
       name,
-      phone,
+      number: phone,
     };
 
     if (!checkContactIdentity()) {
