@@ -3,15 +3,13 @@ import { useState } from 'react';
 import { useLoginUserMutation } from '../redux/auth/auth-reducer';
 import s from '../components/Form/Form.module.css';
 import Container from '../components/Container';
-import { useNavigate } from 'react-router-dom';
 
 export default function RegisterView() {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [loginUser, { isSuccess }] = useLoginUserMutation();
-  const navigate = useNavigate();
-
+  const [loginUser, { data }] = useLoginUserMutation();
+  
   const handleSubmit = event => {
     event.preventDefault();
     const userData = { email: mail, password };
@@ -63,9 +61,7 @@ export default function RegisterView() {
             Log in
           </button>
         </form>
-      </Container>
-      
-      {isSuccess && navigate('/contacts')}
+      </Container>      
     </>
   );
 }

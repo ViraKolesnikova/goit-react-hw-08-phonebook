@@ -28,8 +28,8 @@ export const store = configureStore({
   reducer: {
     filter: filterReducer,
     auth: persistReducer(authPersistConfig, authSlice.reducer),
+    [authApi.reducerPath]: authApi.reducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
-    [authApi.reducerPath]: authApi.reducer
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
@@ -42,6 +42,6 @@ export const store = configureStore({
   ],
 });
 
-setupListeners(store.dispatch);
-
 export const persistor = persistStore(store);
+
+setupListeners(store.dispatch);

@@ -31,10 +31,10 @@ export const authSlice = createSlice({
 
     builder.addMatcher(
       authApi.endpoints.logoutUser.matchFulfilled,
-      (state, { payload }) => {
+      (state, _) => {                                      
         state.user = initialState.user;
         state.token = initialState.token;
-        state.isLoggedIn = false;
+        state.isLoggedIn = false;        
       },
     );
 

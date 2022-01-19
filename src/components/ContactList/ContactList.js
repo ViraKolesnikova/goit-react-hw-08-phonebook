@@ -3,11 +3,13 @@ import toast from 'react-hot-toast';
 
 import { useFetchContactsQuery } from '../../redux/contacts/contacts-reducer';
 import { getFilterWord } from '../../redux/contacts/contacts-selectors';
+
 import ContactItem from '../ContactItem';
 import s from './ContactList.module.css';
 
+
 export default function ContactList() {
-  const filterWord = useSelector(getFilterWord);
+  const filterWord = useSelector(getFilterWord); 
   const { data, error } = useFetchContactsQuery();
 
   const getfilteredContacts = contacts =>

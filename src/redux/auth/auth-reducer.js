@@ -13,7 +13,7 @@ export const authApi = createApi({
     return headers
   },
   }),
-  tagTypes: ['Auth'],
+  // tagTypes: ['Auth'],
   endpoints: builder => ({
     registerUser: builder.mutation({
       query: newUser => ({
@@ -21,7 +21,7 @@ export const authApi = createApi({
         method: 'POST',
         body: newUser,
       }),
-      invalidatesTags: ['Auth'],
+      // invalidatesTags: ['Auth'],
     }),
     loginUser: builder.mutation({
       query: userData => ({
@@ -29,14 +29,14 @@ export const authApi = createApi({
         method: 'POST',
         body: userData,
       }),
-      invalidatesTags: ['Auth'],
+      // invalidatesTags: ['Auth'],
     }),
     logoutUser: builder.mutation({
       query: () => ({
         url: '/users/logout',
         method: 'POST',        
       }),
-      invalidatesTags: ['Auth'],
+      // invalidatesTags: ['Auth'],
     }),
 
     fetchCurrentUser: builder.query({

@@ -10,8 +10,8 @@ export default function UserNav() {
 
   return (
     <>
-    <p className={s.userMail}>{userMail}</p>
-    <button type='button' className={s.logOutBtn} onClick={()=>logoutUser()}>Log out</button>
+      <p className={s.userMail}>{userMail}</p>
+      <button type='button' className={s.logOutBtn} onClick={()=>logoutUser()}>Log out</button>
     </>
   )
 }
