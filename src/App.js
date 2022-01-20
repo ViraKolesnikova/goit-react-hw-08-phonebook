@@ -69,6 +69,7 @@ export default function App() {
                 </RequireAuth>
               }
             />
+          <Route path="*" element={<HomeView />} />
           </Route>
         </Routes>
       </Suspense>

@@ -16,6 +16,7 @@ import { authApi } from './auth/auth-reducer';
 import { contactsApi } from './contacts/contacts-reducer';
 import { filterReducer } from './contacts/contacts-reducer';
 import { authSlice } from './auth/auth-slicer';
+import { ErrorLogger } from './ErrorMiddleware';
 
 const authPersistConfig = {
   key: 'auth',
@@ -39,6 +40,7 @@ export const store = configureStore({
   }),
     contactsApi.middleware,
     authApi.middleware,
+    ErrorLogger,
   ],
 });
 

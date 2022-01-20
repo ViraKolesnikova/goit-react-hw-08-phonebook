@@ -24,7 +24,7 @@ export const contactsApi = createApi({
   endpoints: builder => ({
     fetchContacts: builder.query({
       query: () => '/contacts',      
-      // keepUnusedDataFor: 5,
+      keepUnusedDataFor: 5,
       providesTags: ['Contacts'],
     }),
 
@@ -46,10 +46,15 @@ export const contactsApi = createApi({
     }),
 
     editContact: builder.mutation({
-      query: id => ({
+      query: ({ changedContact, id }) => {
+        console.log(changedContact, id);
+        return ({
         url: `/contacts/${id}`,
         method: 'PATCH',
-      }),
+        body: changedContact,
+      })
+      } ,
+        
       invalidatesTags: ['Contacts'],
     }),
   }),
@@ -59,4 +64,5 @@ export const {
   useFetchContactsQuery,
   useSaveContactMutation,
   useDeleteContactMutation,
+  useEditContactMutation,
 } = contactsApi;
