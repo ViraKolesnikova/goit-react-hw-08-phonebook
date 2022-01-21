@@ -6,7 +6,7 @@ import s from './UserNav.module.css'
 
 export default function UserNav() {
   const userMail = useSelector(getUserMail);
-  const [logoutUser, {}] = useLogoutUserMutation();
+  const [logoutUser] = useLogoutUserMutation();
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import PropTypes from 'prop-types';
 import { Oval } from 'react-loader-spinner';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
@@ -16,18 +16,16 @@ export default function ContactItem({ id, name, phoneNumber }) {
   const [contactName, setContactName] = useState(name);
   const [contactPhone, setContactPhone] = useState(phoneNumber);
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
-  const [editContact, { isLoading: isEditing }] =
-    useEditContactMutation();
+  const [editContact, { isLoading: isEditing }] = useEditContactMutation();
 
-    const editHandler = () => {
-      editContact({
-        changedContact: { name: contactName, number: contactPhone },
-        id,
-      });
-      setChangingContact(false);
-    };
-  
-      
+  const editHandler = () => {
+    editContact({
+      changedContact: { name: contactName, number: contactPhone },
+      id,
+    });
+    setChangingContact(false);
+  };
+
   return (
     <>
       <li className={s.contactListItem}>
@@ -41,7 +39,16 @@ export default function ContactItem({ id, name, phoneNumber }) {
               type="button"
               onClick={() => setChangingContact(true)}
             >
-              <EditRoundedIcon />
+              {isEditing ? (
+                <Oval
+                  arialLabel="loading-indicator"
+                  height="20"
+                  width="20"
+                  color="white"
+                />
+              ) : (
+                <EditRoundedIcon />
+              )}
             </button>
           </>
         ) : (
@@ -62,16 +69,7 @@ export default function ContactItem({ id, name, phoneNumber }) {
               type="button"
               onClick={() => editHandler()}
             >
-              {isEditing ? (
-                <Oval
-                  arialLabel="loading-indicator"
-                  height="20"
-                  width="20"
-                  color="white"
-                />
-              ) : (
-                <DoneOutlineRoundedIcon />
-              )}
+              <DoneOutlineRoundedIcon />
             </button>
           </>
         )}

@@ -10,7 +10,7 @@ export default function RegisterView() {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [registerUser, { data }] = useRegisterUserMutation();
+  const [registerUser] = useRegisterUserMutation();
   
   const handleSubmit = event => {
     event.preventDefault();

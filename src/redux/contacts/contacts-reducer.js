@@ -12,18 +12,18 @@ export const contactsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://connections-api.herokuapp.com/',
     prepareHeaders: (headers, { getState }) => {
-    const token = getState().auth.token
+      const token = getState().auth.token;
 
-    if (token) {
-      headers.set('authorization', `Bearer ${token}`)
-    }
-    return headers
-  },
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: ['Contacts'],
   endpoints: builder => ({
     fetchContacts: builder.query({
-      query: () => '/contacts',      
+      query: () => '/contacts',
       keepUnusedDataFor: 5,
       providesTags: ['Contacts'],
     }),
@@ -47,14 +47,12 @@ export const contactsApi = createApi({
 
     editContact: builder.mutation({
       query: ({ changedContact, id }) => {
-        console.log(changedContact, id);
-        return ({
-        url: `/contacts/${id}`,
-        method: 'PATCH',
-        body: changedContact,
-      })
-      } ,
-        
+        return {
+          url: `/contacts/${id}`,
+          method: 'PATCH',
+          body: changedContact,
+        };
+      },
       invalidatesTags: ['Contacts'],
     }),
   }),
