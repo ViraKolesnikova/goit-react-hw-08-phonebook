@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
@@ -7,6 +8,7 @@ import MainAppBar from './components/MainAppBar';
 import RequireAuth from './components/RequireAuth';
 import PublicRoute from './components/PublicRoute';
 import { ovalWrapper } from './components/Loader/Loader';
+import { getUserStatus } from './redux/auth/authSelector';
 
 const HomeView = lazy(() => import('./views/HomeView'));
 const RegisterView = lazy(() => import('./views/RegisterView'));
@@ -14,6 +16,7 @@ const LoginView = lazy(() => import('./views/LoginView'));
 const ContactsView = lazy(() => import('./views/ContactsView'));
 
 export default function App() {
+  const isLoggedIn = useSelector(getUserStatus);
   return (
     <>
       <Suspense
@@ -63,7 +66,10 @@ export default function App() {
             />
           </Route>
           <Route path="*" element={<MainAppBar />}>
-            <Route path="*" element={<HomeView/>}/>
+            <Route
+              path="*"
+              element={isLoggedIn ? <ContactsView /> : <HomeView />}
+            />
           </Route>
         </Routes>
       </Suspense>
